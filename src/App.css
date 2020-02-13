@@ -22,5 +22,67 @@
 .App-main{
   height:75vh;
 }
+/* --- Hourly load forecasting -------*/
+.load-forecasting{
+  height:65vh;
+  width:80vw;
+  background-color:#1D1E33;
+  display:flex;
+  flex-direction: column;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top:5vh;
+  border: 1px solid rgb(29, 30, 48);
+  border-radius:1em;
+  box-shadow: 3px -2px 3px -2px black;
+}
+/*----- forecasting header ------*/
+.forecasting-header{
+  height:calc(20% - 1em);
+  padding-top:1em;
+}
+.forecasting-header h2{
+  color:white;
+  text-transform: uppercase;
+  font-size: 1.5em;
+}
+/*---- forecasting forecast----*/
+.forecasting-forecast{
+  height:50%;
+}
+.time {
+  color:green;
+  font-size: 2em;
+  padding:0px;
+  margin:0px;
+}
+.actual-load-forecasted{
+  color:white;
+  font-size:2.9em;
+  margin: .2em;
+  padding:.1em;
+}
+.description{
+  color:white;
+  font-size:1.4em;
+}
+/* ----- forecasting-type -----*/
+.forecasting-type{
+height: 20%;
+padding-top:1em;
+}
+.forecasting-type button{
+  background-color: purple;
+  color:white;
+  font-size: 1.2em;
+  font-weight: bolder;
+  padding:.5em;
+  margin: .5em .5em .5em 0;
+  border:1px solid purple;
+  box-shadow: 2px 2px black;
+  -webkit-box-shadow:2px 2px black;
+  border-radius:4px;
+}
+
 
 
