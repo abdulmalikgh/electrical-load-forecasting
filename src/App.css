@@ -36,6 +36,11 @@
   border-radius:1em;
   box-shadow: 3px -2px 3px -2px black;
 }
+@media screen and (min-width:850px) {
+  .load-forecasting{
+    width:60vw;
+  }
+}
 /*----- forecasting header ------*/
 .forecasting-header{
   height:calc(20% - 1em);
