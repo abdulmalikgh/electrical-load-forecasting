@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
   background-color:#0A0E21;
 }
 
@@ -14,24 +13,21 @@
   opacity: .7;
 }
 .App-header{
-  height:15vh;
+  min-height:15vh;
 }
 .App-footer{
   height:10vh
 }
-.App-main{
-  height:75vh;
-}
+
 /* --- Hourly load forecasting -------*/
-.load-forecasting{
+.load-forecasting,.shortTerm-manual{
   height:65vh;
   width:80vw;
   background-color:#1D1E33;
   display:flex;
   flex-direction: column;
-  margin-right: auto;
-  margin-left: auto;
-  margin-top:5vh;
+  align-items:center;
+  margin:3em auto 3em auto;
   border: 1px solid rgb(29, 30, 48);
   border-radius:1em;
   box-shadow: 3px -2px 3px -2px black;
@@ -60,6 +56,7 @@
   font-size: 2em;
   padding:0px;
   margin:0px;
+  text-align: center;
 }
 .actual-load-forecasted{
   color:white;
@@ -88,6 +85,58 @@ padding-top:1em;
   -webkit-box-shadow:2px 2px black;
   border-radius:4px;
 }
+.forecasting-type button:focus{
+  outline: 0;
+  /* your own code here */
+  background-color:rgb(48, 8, 48)
+}
 
-
-
+/*------ Navigation ------*/
+.App-nav{
+  color:white;
+  
+}
+.App-nav ul{
+  float:right;
+  list-style: none;
+}
+.App-nav ul li{
+  display: inline-block;
+}
+.App-nav ul li a{
+  padding:1em;
+  color:purple;
+}
+/*------ ShortTerm-manual ----*/
+.shortTerm-manual{
+color:white;
+font-size:1.5em;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.shortTerm-form{
+  width:60%;
+  
+}
+.shortTerm-manual input{
+  width:30vw;
+  height:2.5em;
+  background-color:#0A0E21;
+  font-size:.6em;
+  padding:.3em;
+  border:2px black ;
+  box-sizing: border-box;
+}
+.shortTerm-manual div{
+  margin:.8em;
+}
+.shortTerm-manual button {
+  float:right;
+  width:20%;
+  background-color:purple;
+  border:2px solid purple;
+  color:white;
+  font-size: 1em;
+  padding:.3em 0;
+}
