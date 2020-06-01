@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
-function Clock(props){
-
- return (
-   <p className='time'>{props.time}</p>
-  )
-    
+function Clock(props) {
+  return <span>{props.time} </span>;
 }
 
 export default Clock;
