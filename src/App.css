@@ -2,9 +2,6 @@
   background-color: #0a0e21;
 }
 
-.App-footer {
-}
-
 /* --- Hourly load forecasting -------*/
 .load-forecasting,
 .shortTerm-manual {
@@ -104,8 +101,6 @@
 }
 .navbar ul li a:active {
   color: #800080 !important;
-}
-.clock {
 }
 
 /*------ ShortTerm-manual ----*/

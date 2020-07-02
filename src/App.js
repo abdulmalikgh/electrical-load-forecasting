@@ -3,8 +3,9 @@ import "./App.css";
 import Footer from "./Footer";
 import ShortTerm from "./loadComponent/ShortTerm";
 import ShortTermManual from "./loadComponent/ShortTermManual";
-import {Route} from "react-router-dom";
 import Navigation from "./Navigation";
+import {connect} from "react-redux";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 class App extends Component {
   constructor(props) {
@@ -24,6 +25,8 @@ class App extends Component {
     this.getWeather(
       "//api.openweathermap.org/data/2.5/weather?q=sunyani&appid=c007d2a99be5bbfad82815648742b9a9"
     );
+
+
   }
   validateResponse(response) {
     if (!response.ok) {
@@ -34,6 +37,7 @@ class App extends Component {
   }
   responseAsJson(response) {
     return response.json();
+
   }
   logError(error) {
     console.error(error);
@@ -93,34 +97,27 @@ class App extends Component {
     this.setState({time: new Date().toLocaleTimeString()});
   }
   render() {
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <Navigation date={this.state.date} time={this.state.time} />
-        </header>
-        <main className="App-main">
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <ShortTerm
-                date={this.state.date}
-                time={this.state.time}
-                predict={this.state.rtSTLF}
-              />
-            )}
-          />
-          <Route
-            path="/short-term"
-            render={() => <ShortTermManual postData={this.postData} />}
-          />
-        </main>
-        <footer className="App-footer">
-          <Footer />
-        </footer>
-      </div>
+      <Router>
+        <div className="App">
+          <header className="App-header">
+            <Navigation date={this.state.date} time={this.state.time} />
+          </header>
+
+          <main className="App-main">
+            <Switch>
+              <Route exact path="/" component={ShortTerm} />
+              <Route path="/manual-hourly-forecast" component={ShortTermManual} />
+            </Switch>
+          </main>
+          <footer className="App-footer">
+            <Footer />
+          </footer>
+        </div>
+      </Router>
     );
   }
 }
 
-export default App;
+export default connect()(App);

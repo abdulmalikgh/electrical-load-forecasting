@@ -59,30 +59,41 @@ class ShortTermManual extends Component{
    render() {
     
        return (
-           <div className='shortTerm-manual'>
-               <div className='shortTerm-form'>
-               <h2 tabIndex='-1'>Short Term Load Forecasting</h2>
-               <form onSubmit={this.handleForm}>
-                   <div>
-                   <label htmlFor='time'>Select date and time </label>
-                    <input type='datetime-local' name="time" placeholder='select date and time'
-                    value={this.state.time} id='time' onChange={this.handleChange} required/>
-                    
-                   </div>
-                   <div>
-                   <label htmlFor='humidity'>Humidity </label>
-                    <input type='number' placeholder='Enter humidity' id='humidity'
-                    name='humidity' value={this.state.humidity} onChange={this.handleChange} required/>
-                     
-                   </div>
-                    <div>
-                    <label htmlFor='temperature'>Temperature </label>
-                    <input type='number' value={this.state.temperature}  name='temperature' 
-                     placeholder='Enter Temperature' id='temperature' onChange={this.handleChange} required/>
-                    
+           <div className='container'>
+               <div className='row mt-5'>
+                   <div className="col-12 ">
+                       <div className='card'>
+                            <h2 tabIndex='-1' className='text-center p-5'>Short Term Load Forecasting</h2>
+
+                                <div className="row justify-content-center ">
+                                    <div className="col-lg-8 col-md-10 col-sm -12 mb-5">
+                                    
+                                        <form onSubmit={this.handleForm}>
+                                        <div className="form-group">
+                                        <label htmlFor='time' className='form-label'>Select date and time </label>
+                                            <input className="form-control" type='datetime-local' name="time" placeholder='select date and time'
+                                            value={this.state.time} id='time' onChange={this.handleChange} required/>
+                                            
+                                        </div>
+                                        <div className="form-group">
+                                        <label htmlFor='humidity'>Humidity </label>
+                                            <input type='number' className="form-control" placeholder='Enter humidity' id='humidity'
+                                            name='humidity' value={this.state.humidity} onChange={this.handleChange} required/>
+                                            
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor='temperature'>Temperature </label>
+                                            <input className="form-control" type='number' value={this.state.temperature}  name='temperature' 
+                                            placeholder='Enter Temperature' id='temperature' onChange={this.handleChange} required/>
+                                            
+                                        </div>
+                                        <button className='btn btn-primary'>Submit</button>
+                                    </form>
+                                   
+                                </div>
+                                </div>
+                            </div>
                     </div>
-                   <button id='submit-shorterm'>Submit</button>
-               </form>
                </div>
            </div>
        )

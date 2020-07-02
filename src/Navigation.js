@@ -9,11 +9,11 @@ function Navigation(props) {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-light">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand">
           Electrical Load Forecasting
         </a>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbarSupportedContent"
@@ -21,18 +21,18 @@ function Navigation(props) {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <span class="nav-link mr-5">
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <span className="nav-link mr-5">
                 <Clock time={props.time} />{" "}
               </span>
             </li>
-            <li class="nav-item dropdown active">
+            <li className="nav-item dropdown active">
               <a
-                class="nav-link dropdown-toggle"
+                className="nav-link dropdown-toggle"
                 id="navbarDropdown"
                 role="button"
                 data-toggle="dropdown"
@@ -41,21 +41,21 @@ function Navigation(props) {
               >
                 Short Term
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link class="dropdown-item" href="#">
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link className="dropdown-item" to="/">
                   Real Time Forecasting
                 </Link>
-                <div class="dropdown-divider"></div>
-                <Link class="dropdown-item" href="#">
+                <div className="dropdown-divider"></div>
+                <Link className="dropdown-item" to="/manual-hourly-forecast">
                   Manual Forecasting
                 </Link>
               </div>
             </li>
 
-            <li class="nav-item dropdown active">
+            <li className="nav-item dropdown active">
               <a
                 href="#"
-                class="nav-link dropdown-toggle"
+                className="nav-link dropdown-toggle"
                 id="navbarDropdown"
                 role="button"
                 data-toggle="dropdown"
@@ -64,18 +64,18 @@ function Navigation(props) {
               >
                 Long Term
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link class="dropdown-item" href="#">
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link className="dropdown-item" to="/realtime-dairly-forecast">
                   Real Time Forecasting
                 </Link>
-                <div class="dropdown-divider"></div>
-                <Link class="dropdown-item" href="#">
+                <div className="dropdown-divider"></div>
+                <Link className="dropdown-item" to="/manual-dairly-forecast">
                   Manual Forecasting
                 </Link>
               </div>
             </li>
-            <li class="nav-item">
-              <Link class="nav-link">About Us</Link>
+            <li className="nav-item">
+              <Link className="nav-link" to="/about-us">About Us</Link>
             </li>
           </ul>
         </div>
