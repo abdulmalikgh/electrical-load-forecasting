@@ -62,7 +62,7 @@ function Navigation(props) {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                Long Term
+              Medium Term
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <Link className="dropdown-item" to="/realtime-dairly-forecast">

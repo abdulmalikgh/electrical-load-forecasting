@@ -7,7 +7,8 @@ class RealTimeHourly extends Component{
         this.state = {
             time: '',
             loading:true,
-            data:[]
+            data:[],
+            title:''
         }
     }
     handleChange =(event)=>{
@@ -30,6 +31,13 @@ class RealTimeHourly extends Component{
       const currentYear = currentDate.getFullYear()
       const currentMonth = parseInt(currentDate.getMonth() + 1 )
       const currentDay = currentDate.getDate()
+      const date = new Date(this.state.time)
+      const monthname = date.toLocaleString('default', { month: 'long' })
+      const yearname = date.toLocaleString('defualt', { year:'numeric'})
+      const dayname = date.toLocaleString('defualt', { weekday:'long'})
+
+      $this.setState({title: `Hourly Load Forecast for Sunyani on ${dayname} ${monthname} ${yearname}`})
+      
       if(year > currentYear && month > currentMonth &&  day > currentDay) {
           alert('Incorrect Date, You can predict more than the current data')
           return;
@@ -59,8 +67,12 @@ class RealTimeHourly extends Component{
          const currentDate = new Date();
           const day = currentDate.getDate()
           const month = parseInt(currentDate.getMonth() + 1)
-          const year = currentDate.getFullYear()
-         // console.log('day', day, 'month', month, 'year', year)
+          const year = currentDate.getFullYear();
+          const monthname = currentDate.toLocaleString('default', { month: 'long' })
+          const yearname = currentDate.toLocaleString('defualt', { year:'numeric'})
+          const dayname = currentDate.toLocaleString('defualt', { weekday:'long'})
+
+          $this.setState({title: `Hourly Load Forecast for Sunyani at ${dayname} ${monthname} ${yearname}`})
           
              fetch(`https://load-demand-forecast.herokuapp.com/api/hourly/predictions/${year}/${month}/${day}`)
             .then(function(response) {
@@ -107,12 +119,12 @@ class RealTimeHourly extends Component{
                    <div className="col-12 ">
                        <div className='card'>
                                 <div className="row justify-content-center ">
-                                    <div className="col-lg-8 col-md-10 col-sm-11 mb-5">
+                                    <div className="col-lg-8 col-md-10 col-sm-11 mb-2">
                                     
                                         <form onSubmit={this.handleForm}>
                                         <div className="form-group">
                                         <label htmlFor='time' className='form-label'>Select date and time </label>
-                                            <input className="form-control" type='datetime-local' name="time" placeholder='select date and time'
+                                            <input className="form-control" type='date' name="time" placeholder='select date and time'
                                             value={this.state.time} id='time' onChange={this.handleChange} required/>
                                             
                                         </div>
@@ -132,7 +144,7 @@ class RealTimeHourly extends Component{
             <div className="row mt-5 mb-5">
                 <div className="col-sm-12 col-md-12 col-lg-12">
                     <div className="card">
-                    {this.state.data.length > 0 && <ChartComponent data={this.state.data}/> }
+                        {this.state.data.length > 0 && <ChartComponent data={this.state.data} max={24} title={this.state.title} hour={'hour'}/> }
                     </div>
                 </div>
                 </div>

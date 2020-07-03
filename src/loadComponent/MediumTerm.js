@@ -7,7 +7,8 @@ class MediumTerm extends Component{
         this.state = {
             time: '',
             loading:true,
-            data:[]
+            data:[],
+            title:'',
         }
     }
     handleChange =(event)=>{
@@ -31,6 +32,13 @@ class MediumTerm extends Component{
       const currentYear = currentDate.getFullYear()
       const currentMonth = parseInt(currentDate.getMonth() + 1 )
       const currentDay = currentDate.getDate()
+      const date = new Date(this.state.time)
+      const monthname = date.toLocaleString('default', { month: 'long' })
+      const yearname = date.toLocaleString('defualt', { year:'numeric'})
+      const dayname = date.toLocaleString('defualt', { weekday:'long'})
+
+      $this.setState({title: `Daily Load Forecast for Sunyani on ${dayname} ${monthname} ${yearname}`})
+    
       if(year > currentYear && month > currentMonth &&  day > currentDay) {
           alert('Incorrect Date, You can predict more than the current data')
           return;
@@ -61,7 +69,11 @@ class MediumTerm extends Component{
           const day = currentDate.getDate()
           const month = parseInt(currentDate.getMonth() + 1)
           const year = currentDate.getFullYear()
-         // console.log('day', day, 'month', month, 'year', year)
+          const monthname = currentDate.toLocaleString('default', { month: 'long' })
+          const yearname = currentDate.toLocaleString('defualt', { year:'numeric'})
+          const dayname = currentDate.toLocaleString('defualt', { weekday:'long'})
+    
+          $this.setState({title: `Dairly Load Forecast for Sunyani in the of ${monthname} ${yearname}`})
           
              fetch(`https://load-demand-forecast.herokuapp.com/api/daily/predictions/${year}/${month}`)
             .then(function(response) {
@@ -131,10 +143,10 @@ class MediumTerm extends Component{
                </div>
            </div>
           <div className="container">
-            <div className="row mt-5 mb-5">
+            <div className="row mt-5 mb-2">
                 <div className="col-sm-12 col-md-12 col-lg-12">
                     <div className="card">
-                    {this.state.data.length > 0 && <ChartComponent data={this.state.data}/> }
+                    {this.state.data.length > 0 && <ChartComponent title={this.state.title} data={this.state.data}/> }
                     </div>
                 </div>
                 </div>

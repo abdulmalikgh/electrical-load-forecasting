@@ -6,31 +6,27 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class ChartComponent extends React.Component{
   render() {
+    const hour = this.props.hour ? 'Hour' : 'Day'
+    const day = this.props.hour ? 'Day' : 'Month'
+    const prefix = this.props.hour ? 'hr' : 'day'
     const options = {
 			theme: "light2",
 			title: {
-				text: "Load Forecasting For december 2019"
+				text: this.props.title
 			},
-			axisY:[{ 
+			axisY:{ 
 				title: "Predictions",
-        suffix: "MW",
-        scales: {
-              ticks: {
-                  max: 24,
-                  min: 0,
-                  step:1
-              }
-          
-      },
-
-      }],
+                suffix: "MW "
+            },
 			axisX: {
-				title: "Hour of The Day",
-				prefix: "hr",
-      },
+				title: `${hour} of The ${day}`,
+                prefix: prefix,
+                maximum: this.props.max ? this.props.max : 31,
+                interval:1
+                },
 			data: [{
 				type: "line",
-				toolTipContent: "hour {x}: {y}MW",
+				toolTipContent: `${hour} {x}: {y}MW`,
 				dataPoints: this.props.data
       }]}
   

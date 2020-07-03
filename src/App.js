@@ -6,6 +6,7 @@ import RealTimeHourly from "./loadComponent/RealTimeHourly";
 import MediumTerm from './loadComponent/MediumTerm';
 import MediumTermManual from './loadComponent/MediumTermManual'
 import Navigation from "./Navigation";
+import About from './loadComponent/About'
 import {connect} from "react-redux";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom"; 
 
@@ -113,6 +114,7 @@ class App extends Component {
               <Route path="/manual-hourly-forecast" component={ShortTermManual} />
               <Route path="/realtime-dairly-forecast" component={MediumTerm} />
               <Route path="/manual-dairly-forecast" component={MediumTermManual} />
+              <About path="/about-us" component={About} />
             </Switch>
           </main>
           <footer className="App-footer">
