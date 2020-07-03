@@ -7,21 +7,30 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 var dataPoints =[];
 class MediumTerm extends Component {
-  //loading = true
+  state = {
+    loading: true
+  }
 	componentDidMount(){
-     
-		var chart = this.chart;
-		fetch('https://load-demand-forecast.herokuapp.com/api/hourly/predictions/2020/5/26')
+    let $this = this
+  //	var chart = this.chart;
+  
+  const currentDate = new Date();
+      const day = currentDate.getDate()
+      const month = parseInt(currentDate.getMonth() + 1)
+      const year = currentDate.getFullYear()
+
+		fetch(`https://load-demand-forecast.herokuapp.com/api/daily/predictions/${year}/${month}`)
 		.then(function(response) {
 			return response.json();
 		})
 		.then(function(data) {
-            
-			for(let i = 0; i < data.hours.length; i++) {
-				dataPoints.push({x:data.hours[i], y:data.predictions[i]})
+      
+			for(let i = 0; i < data.days.length; i++) {
+				dataPoints.push({x:data.days[i], y:data.predictions[i]})
       }
-        chart.render();//
-    
+       // chart.render();//
+      $this.state.loading = false;
+      console.log('data, ',dataPoints)
 		});
 
 
@@ -37,15 +46,15 @@ class MediumTerm extends Component {
 				suffix: "MW",
 			},
 			axisX: {
-				title: "Hour of The Day",
-				prefix: "hr",
+				title: "Day of The Month",
+				prefix: "day",
 			},
 			data: [{
 				type: "line",
-				toolTipContent: "hour {x}: {y}MW",
+				toolTipContent: "day {x}: {y}MW",
 				dataPoints: dataPoints
       }]}
-      /*
+      
       if(this.state.loading) {
         return (
           <div className="container"> 
@@ -54,8 +63,8 @@ class MediumTerm extends Component {
                 <div className="card">
                     <div className="row justify-content-center m-5 p-5">
                        <div className="col-12 m-auto">
-                          <div class="spinner-grow text-primary" role="status">
-                            <span class="sr-only text-center">Loading...</span>
+                          <div className="spinner-grow text-primary" role="status">
+                            <span className="sr-only text-center">Loading...</span>
                           </div>
                        </div>
                     </div>
@@ -64,7 +73,7 @@ class MediumTerm extends Component {
             </div>
           </div>
         )
-      }*/
+      }
     return (
       <div className="container">
         <div className="row mt-5 mb-5">

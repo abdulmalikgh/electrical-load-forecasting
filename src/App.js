@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import "./App.css";
 import Footer from "./Footer";
-import ShortTerm from "./loadComponent/ShortTerm";
 import ShortTermManual from "./loadComponent/ShortTermManual";
+import RealTimeHourly from "./loadComponent/RealTimeHourly";
 import MediumTerm from './loadComponent/MediumTerm';
 import MediumTermManual from './loadComponent/MediumTermManual'
 import Navigation from "./Navigation";
@@ -109,7 +109,7 @@ class App extends Component {
 
           <main className="App-main">
             <Switch>
-              <Route exact path="/" component={ShortTerm} />
+              <Route exact path="/" component={RealTimeHourly} />
               <Route path="/manual-hourly-forecast" component={ShortTermManual} />
               <Route path="/realtime-dairly-forecast" component={MediumTerm} />
               <Route path="/manual-dairly-forecast" component={MediumTermManual} />

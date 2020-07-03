@@ -6,7 +6,8 @@ class ShortTermManual extends Component{
             time: '',
             humidity:'',
             temperature:'',
-            prediction: 0
+            prediction: 0,
+            loading:false,
         }
     }
     handleChange =(event)=>{
@@ -16,27 +17,44 @@ class ShortTermManual extends Component{
     }
     validateResponse = (response)=>{
      if(!response.ok) {
+        this.setState({loading:false})
          throw new Error('An error occurs', response.statusText)
      }
-     console.log(response)
+     
      return response;
     }
     responseAsJson = (response) => {
      return response.json()
     }
     showPrediction = (jsonResponse)=>{
-     console.log(jsonResponse)
+    this.setState({loading:false})
      this.setState({prediction:jsonResponse.prediction})
-     alert('Your prediction is:', this.state.prediction)
+     //console.log('prediction: ', this.state.prediction)
     }
-
+    postData(forecastData) {
+        return fetch(
+          "https://load-demand-forecast.herokuapp.com/api/predict/hourly",
+          {
+            method: "post",
+            mode: "cors",
+            body: JSON.stringify(forecastData),
+            headers: {
+              "content-type": "application/json",
+            },
+          }
+        );
+      }
     handleForm =(e)=>{
         e.preventDefault();
+        this.setState({ loading: true})
       const dateTime = this.state.time.split('-');
       const dayHour = dateTime[2].split('T');
       const day = parseInt(dayHour[0]);
       const month = parseInt(dateTime[1]);
-      const hour = parseInt(dayHour[1].split(':')[0])
+      let hour = parseInt(dayHour[1].split(':')[0])
+      if(hour === 0) {
+          hour = 1;
+      }
       const humidity = parseFloat(this.state.humidity);
       const temperature = parseFloat(this.state.temperature)
       const forecastData = {
@@ -46,27 +64,47 @@ class ShortTermManual extends Component{
         temperature:temperature,
         humidity:humidity
      }
-     this.props.postData(forecastData)
+     //console.log('forecast data', forecastData)
+     this.postData(forecastData)
       .then(this.validateResponse)
       .then(this.responseAsJson)
       .then(this.showPrediction)
       .catch( err => {
           console.error(err)
+          this.setState({ loading: false})
       })
 
 
     }
    render() {
-    
+    let spinner;
+    let valuePredicted;
+    if(this.state.loading) {
+        spinner = 
+        <div className="spinner-grow text-danger" role="status">
+          <span className="sr-only">Loading...</span>
+       </div>
+    }
+
+    if(this.state.prediction) {
+        valuePredicted = <div className="container"> 
+            <div className="row justify-content-center">
+                <div className="col-12">
+                    <p className="text-success p-3 text-center"> Your Prediction:  { this.state.prediction} MW </p>
+                </div>
+            </div>
+        </div>
+    }
        return (
            <div className='container'>
                <div className='row mt-5'>
                    <div className="col-12 ">
                        <div className='card'>
-                            <h2 tabIndex='-1' className='text-center p-5'>Short Term Load Forecasting</h2>
+                           { valuePredicted }
+                            <h2 tabIndex='-1' className='text-center pt-2 pb-5'>Short Term Load Forecasting</h2>
 
                                 <div className="row justify-content-center ">
-                                    <div className="col-lg-8 col-md-10 col-sm -12 mb-5">
+                                    <div className="col-lg-8 col-md-10 col-sm-11 mb-5">
                                     
                                         <form onSubmit={this.handleForm}>
                                         <div className="form-group">
@@ -87,7 +125,10 @@ class ShortTermManual extends Component{
                                             placeholder='Enter Temperature' id='temperature' onChange={this.handleChange} required/>
                                             
                                         </div>
-                                        <button className='btn btn-primary'>Submit</button>
+                                            <button className='btn btn-primary'>
+                                                Submit 
+                                            {spinner}
+                                            </button>
                                     </form>
                                    
                                 </div>
