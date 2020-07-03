@@ -6,7 +6,7 @@ class RealTimeHourly extends Component{
         super(props)
         this.state = {
             time: '',
-            loading:false,
+            loading:true,
             data:[]
         }
     }
@@ -17,7 +17,6 @@ class RealTimeHourly extends Component{
     }
    
     handleForm =(e)=>{
-        
         e.preventDefault();
         const $this = this
         $this.setState({ loading: true})
@@ -26,6 +25,16 @@ class RealTimeHourly extends Component{
       const day = parseInt(dayHour[0]);
       const month = parseInt(dateTime[1]);
       let year = parseInt(dateTime[0])
+
+      const currentDate = new Date()
+      const currentYear = currentDate.getFullYear()
+      const currentMonth = parseInt(currentDate.getMonth() + 1 )
+      const currentDay = currentDate.getDate()
+      if(year > currentYear && month > currentMonth &&  day > currentDay) {
+          alert('Incorrect Date, You can predict more than the current data')
+          return;
+      }
+      $this.state.loadding = true
       fetch(`https://load-demand-forecast.herokuapp.com/api/hourly/predictions/${year}/${month}/${day}`)
       .then(function(response) {
           return response.json();
@@ -46,6 +55,7 @@ class RealTimeHourly extends Component{
     componentDidMount(){
         let $this = this
         //var chart = this.chart;
+        $this.state.loadding = true
          const currentDate = new Date();
           const day = currentDate.getDate()
           const month = parseInt(currentDate.getMonth() + 1)
@@ -68,7 +78,27 @@ class RealTimeHourly extends Component{
             });
     
     }
+    
    render() {
+    if(this.state.loading) {
+        return (
+          <div className="container"> 
+            <div className="row my-5">
+              <div className="col-12">
+                <div className="card">
+                    <div className="row justify-content-center m-5 p-5">
+                       <div className="col-12">
+                          <div className="spinner-grow text-primary" role="status">
+                            <span className="sr-only">Loading...</span>
+                          </div>
+                       </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      }
     //console.log('points',this.state.data)
        return (
            <div className='container-fluid'>
