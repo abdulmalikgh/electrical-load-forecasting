@@ -37,7 +37,7 @@ class MediumTerm extends Component{
       const yearname = date.toLocaleString('defualt', { year:'numeric'})
       const dayname = date.toLocaleString('defualt', { weekday:'long'})
 
-      $this.setState({title: `Daily Load Forecast for Sunyani on ${dayname} ${monthname} ${yearname}`})
+      $this.setState({title: `Daily Load Forecast for Sunyani in the month of ${monthname} ${yearname}`})
     
       if(year > currentYear && month > currentMonth &&  day > currentDay) {
           alert('Incorrect Date, You can predict more than the current data')
@@ -73,7 +73,7 @@ class MediumTerm extends Component{
           const yearname = currentDate.toLocaleString('defualt', { year:'numeric'})
           const dayname = currentDate.toLocaleString('defualt', { weekday:'long'})
     
-          $this.setState({title: `Dairly Load Forecast for Sunyani in the of ${monthname} ${yearname}`})
+          $this.setState({title: `Dairly Load Forecast for Sunyani in the month of ${monthname} ${yearname}`})
           
              fetch(`https://load-demand-forecast.herokuapp.com/api/daily/predictions/${year}/${month}`)
             .then(function(response) {

@@ -72,7 +72,7 @@ class RealTimeHourly extends Component{
           const yearname = currentDate.toLocaleString('defualt', { year:'numeric'})
           const dayname = currentDate.toLocaleString('defualt', { weekday:'long'})
 
-          $this.setState({title: `Hourly Load Forecast for Sunyani at ${dayname} ${monthname} ${yearname}`})
+          $this.setState({title: `Hourly Load Forecast for Sunyani on ${dayname} ${monthname} ${yearname}`})
           
              fetch(`https://load-demand-forecast.herokuapp.com/api/hourly/predictions/${year}/${month}/${day}`)
             .then(function(response) {
