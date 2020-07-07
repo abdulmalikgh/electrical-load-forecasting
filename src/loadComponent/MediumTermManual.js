@@ -88,8 +88,8 @@ class MediumTermManual extends Component{
     if(this.state.prediction) {
         valuePredicted = <div className="container"> 
             <div className="row justify-content-center">
-                <div className="col-12">
-                    <p className="text-success p-3"> Your Prediction:  { this.state.prediction} MW </p>
+                <div className="col-12 value-predicted ">
+                    <p className="p-3"> Your Prediction:  {parseFloat(this.state.prediction).toFixed()} MW </p>
                 </div>
             </div>
         </div>

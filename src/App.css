@@ -167,11 +167,16 @@
     padding: 0.3px;
     margin-right: 10px;
   }
+  .navbar-brand {
+    font-size:1em !important;
+  }
 }
 /****
  ***/
  .time {
-   fontsize:1.3em;
+   font-size:1.1em !important;
+   color:brown;
+   font-weight: bolder;
  }
  .prediction{
    font-weight: bolder;
@@ -190,7 +195,19 @@
  .title-text{
    color:#1a1e75
  }
- .footer-text{
-   font-size: 1.2em;
+ .header-text{
+   font-size: 1.5em;
    color:#0a0e21;
+   font-weight: bold;
+ }
+ .nav-pills .nav-item a {
+   font-size: 1.3em;
+ }
+ .value-predicted {
+   background-color: darkblue;
+ }
+ .value-predicted  p{
+   color:white;
+   font-weight: bolder;
+   font-size: 1.3em;
  }

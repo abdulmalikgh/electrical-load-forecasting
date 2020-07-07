@@ -9,7 +9,7 @@ function Navigation(props) {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-light">
       <div className="container-fluid">
-        <a className="navbar-brand">
+        <a className="navbar-brand" href='/'>
           Electrical Load Demand Forecasting
         </a>
         <button
@@ -29,6 +29,9 @@ function Navigation(props) {
               <span className="nav-link mr-5">
                 <Clock time={props.time} />{" "}
               </span>
+            </li>
+            <li className="nav-item">
+              <a href="/" className="nav-link">Home</a>
             </li>
             <li className="nav-item dropdown active">
               <a

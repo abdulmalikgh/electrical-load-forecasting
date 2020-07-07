@@ -4,8 +4,8 @@ class Home extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            currentTime:null,
-            previousTime:null,
+            currentTime:this.formatTime(new Date().getHours()),
+            previousTime:this.formatTime(new Date(new Date().getTime() + (1000*60*60)).getHours()),
             weather: [],
             rtSTLF: 0,
             rtMTLF:0,
@@ -13,19 +13,22 @@ class Home extends React.Component {
         }
         this.showHourlyPrediction = this.showHourlyPrediction.bind(this);
     }
-    getCurrentTime() {
-      const currentTime = new Date().toLocaleTimeString()
-      const previousTime = new Date(new Date().getTime() - (1000*60*60)).toLocaleTimeString()
-      //console.log('currentTime',currentTime)
+    formatTime(time) {
+        let dd = 'AM'
 
-      this.setState({
-          currentTime:currentTime,
-          previousTime:previousTime
-      })
-      
+        if(time > 12) {
+          time = time - 12 
+          dd = 'PM'
+        }
+        if(time === 12 ) {
+            time = 12
+        }
+        return `${time} : 00 ${dd}`
     }
+
     componentDidMount(){
-        this.getCurrentTime()
+        //this.getCurrentTime()
+        
         this.getWeather(
             "//api.openweathermap.org/data/2.5/weather?q=sunyani&appid=c007d2a99be5bbfad82815648742b9a9"
           );
@@ -127,26 +130,67 @@ class Home extends React.Component {
                         <div className="col-sm-12 col-md-12 col-lg-12">
                             <div className="card border-left-primary">
                                 <div className="card-header">
-                                    <h2 className='text-primary title-text'> Real Time Hourly Forecast, Sunyani</h2>
+                                    <h2 className='text-center title-text'> Real Time Load Forecast For Sunyani</h2>
                                 </div>
-                                <div className="card-body">
-                                    <div className='row justify-content-center'>
-                                        <div className='col-12'>
-                                            <p className='text-center  time'>
-                                                <span> {this.state.previousTime} </span>
-                                                <span> - </span>         
-                                                <span>{ this.state.currentTime }</span>
-                                            </p>
-                                            <p className='text-center  prediction'>{parseFloat(this.state.rtSTLF).toFixed(2)}</p>
-                                            <p className='text-center  unit'>MegaWatt</p>
+                                <ul class="nav nav-pills my-3 justify-content-center" id="pills-tab" role="tablist">
+                                    <li className="nav-item" role="presentation">
+                                        <a className="nav-link active" id="pills-home-tab" 
+                                        data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" 
+                                        aria-selected="true">Hourly Forecast</a>
+                                    </li>
+                                    <li className="nav-item" role="presentation">
+                                        <a className="nav-link" id="pills-profile-tab" 
+                                        data-toggle="pill" href="#pills-profile" role="tab" 
+                                        aria-controls="pills-profile" aria-selected="false">Daily Forecast</a>
+                                    </li>
+            
+                                </ul>
+                                <hr />
+                                    <div className="tab-content" id="pills-tabContent">
+                                        <div className="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                            <div className="card-body">
+                                                <div className='row justify-content-center'>
+                                                <div className='col-12'>
+                                                        <p className="text-center header-text">Hourly Load Forecast Today &nbsp; 
+                                                        { new Date().toLocaleString('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) }
+                                                        </p>
+                                                        <p className='text-center  time'>
+                                                                   
+                                                            <span> from { this.state.currentTime }</span>
+                                                            <span> to {this.state.previousTime} </span> 
+                                                        </p> 
+                                                    </div>
+                                                    <div className='col-12 pb-5'>
+                                                        
+                                                        <p className='text-center  prediction'>{parseFloat(this.state.rtSTLF).toFixed(2)}</p>
+                                                        <p className='text-center  pb-4 unit'>MegaWatt</p>
+                                                        <hr />
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className='col-12'>
-                                            <p className="text-center footer-text">Load Forecast Today &nbsp; 
-                                            { new Date().toLocaleString('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) }
-                                            </p> 
+                                        <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                            <div className="card-body">
+                                                    <div className='row justify-content-center'>
+                                                    <div className='col-12'>
+                                                            <p className="text-center header-text">Daily Load Forecast Today &nbsp; 
+                                                            { new Date().toLocaleString('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) }
+                                                            </p> 
+                                                            <p className='text-center  time'>
+                                                               <span>  from  12:00 AM to 11.59 PM </span>
+                                                            </p>
+                                                        </div>
+                                                        <div className='col-12 pb-5'>
+                                                            <p className='text-center  prediction'>{parseFloat(this.state.rtMTLF).toFixed(2)}</p>
+                                                            <p className='text-center  unit pb-4'>MegaWatt</p>
+                                                            <hr />
+                                                        </div>
+                                                    </div>
+                                                </div>
                                         </div>
+                                    
                                     </div>
-                                </div>
                             </div>
                         </div>
                     </div>
