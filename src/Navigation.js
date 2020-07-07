@@ -39,38 +39,15 @@ function Navigation(props) {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                Short Term
+                Manual Forecast
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link className="dropdown-item" to="/">
-                  Real Time Forecasting
-                </Link>
-                <div className="dropdown-divider"></div>
                 <Link className="dropdown-item" to="/manual-hourly-forecast">
-                  Manual Forecasting
-                </Link>
-              </div>
-            </li>
-
-            <li className="nav-item dropdown active">
-              <a
-                href="#"
-                className="nav-link dropdown-toggle"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-              Medium Term
-              </a>
-              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link className="dropdown-item" to="/realtime-dairly-forecast">
-                  Real Time Forecasting
+                  Short Term 
                 </Link>
                 <div className="dropdown-divider"></div>
                 <Link className="dropdown-item" to="/manual-dairly-forecast">
-                  Manual Forecasting
+                  Medium Term
                 </Link>
               </div>
             </li>
@@ -87,11 +64,11 @@ function Navigation(props) {
               Past Forecast
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link className="dropdown-item" to="/realtime-dairly-forecast">
+                <Link className="dropdown-item" to="/past_hourly_forecast">
                   Hourly Past Forecast
                 </Link>
                 <div className="dropdown-divider"></div>
-                <Link className="dropdown-item" to="/manual-dairly-forecast">
+                <Link className="dropdown-item" to="/past_dairly_forecast">
                   Dairly Past Forecast
                 </Link>
               </div>
