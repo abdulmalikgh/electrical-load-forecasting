@@ -10,7 +10,7 @@ function Navigation(props) {
     <nav className="navbar navbar-expand-lg navbar-dark bg-light">
       <div className="container-fluid">
         <a className="navbar-brand">
-          Electrical Load Forecasting
+          Electrical Load Demand Forecasting
         </a>
         <button
           className="navbar-toggler"
@@ -71,6 +71,28 @@ function Navigation(props) {
                 <div className="dropdown-divider"></div>
                 <Link className="dropdown-item" to="/manual-dairly-forecast">
                   Manual Forecasting
+                </Link>
+              </div>
+            </li>
+            <li className="nav-item dropdown active">
+              <a
+                href="#"
+                className="nav-link dropdown-toggle"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+              Past Forecast
+              </a>
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link className="dropdown-item" to="/realtime-dairly-forecast">
+                  Hourly Past Forecast
+                </Link>
+                <div className="dropdown-divider"></div>
+                <Link className="dropdown-item" to="/manual-dairly-forecast">
+                  Dairly Past Forecast
                 </Link>
               </div>
             </li>

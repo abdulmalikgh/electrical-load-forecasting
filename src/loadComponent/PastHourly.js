@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import ChartComponent from './ChartComponent'
 
-class RealTimeHourly extends Component{
+class PastHourly extends Component{
     constructor(props) {
         super(props)
         this.state = {
@@ -154,4 +154,4 @@ class RealTimeHourly extends Component{
    }
 }
 
-export default RealTimeHourly;
+export default PastHourly;

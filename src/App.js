@@ -2,9 +2,10 @@ import React, {Component} from "react";
 import "./App.css";
 import Footer from "./Footer";
 import ShortTermManual from "./loadComponent/ShortTermManual";
-import RealTimeHourly from "./loadComponent/RealTimeHourly";
-import MediumTerm from './loadComponent/MediumTerm';
+import PastHourly from "./loadComponent/PastHourly";
+import PastDairly from './loadComponent/PastDairly';
 import MediumTermManual from './loadComponent/MediumTermManual'
+import Home from './loadComponent/Home'
 import Navigation from "./Navigation";
 import About from './loadComponent/About'
 import {connect} from "react-redux";
@@ -110,9 +111,10 @@ class App extends Component {
 
           <main className="App-main">
             <Switch>
-              <Route exact path="/" component={RealTimeHourly} />
+              <Route exact path="/" component={Home} />
               <Route path="/manual-hourly-forecast" component={ShortTermManual} />
-              <Route path="/realtime-dairly-forecast" component={MediumTerm} />
+              <Route path="/past_dairly_forecast" component={PastDairly} />
+              <Route path="/past_hourly_forecast" component={PastHourly} />
               <Route path="/manual-dairly-forecast" component={MediumTermManual} />
               <About path="/about-us" component={About} />
             </Switch>

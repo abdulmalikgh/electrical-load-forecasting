@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import ChartComponent from './ChartComponent'
 
-class MediumTerm extends Component{
+class PastDairly extends Component{
     constructor(props) {
         super(props)
         this.state = {
@@ -156,4 +156,4 @@ class MediumTerm extends Component{
    }
 }
 
-export default MediumTerm;
+export default PastDairly;
