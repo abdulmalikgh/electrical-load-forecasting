@@ -8,8 +8,8 @@ class Home extends React.Component {
             previousTime:this.formatTime(new Date(new Date().getTime() + (1000*60*60)).getHours()),
             weather: [],
             rtSTLF: 0,
-            rtMTLF:0,
-            st_manualForecast: 0,
+            rtMTLF: 0,
+            isLoading: true,
         }
         this.showHourlyPrediction = this.showHourlyPrediction.bind(this);
     }
@@ -39,19 +39,20 @@ class Home extends React.Component {
         if (!response.ok) {
           throw new Error("An Error occurs", response.statusText);
         } else {
+          
           return response;
         }
+        
       }
       responseAsJson(response) {
         return response.json();
     
       }
-      logError(error) {
-        console.error(error);
-      }
       showHourlyPrediction(response) {
         if (response) {
-          this.setState({rtSTLF: response.prediction});
+          this.setState({rtSTLF: response.prediction,
+          });
+          this.setState({isLoading:false})
         }
       }
       setWeather(data) {
@@ -90,7 +91,7 @@ class Home extends React.Component {
               temperature: temp,
               humidity: hum,
             };
-            
+            //this.setState({isLoading : true})
             fetch("https://load-demand-forecast.herokuapp.com/api/predict/daily",
             {
               method: "post",
@@ -108,11 +109,15 @@ class Home extends React.Component {
             }).then(this.validateResponse)
               .then(this.responseAsJson)
               .then(respons => {
-                  console.log(respons)
+                  //console.log(respons)
+                  
                   this.setState({
-                      rtMTLF:respons.prediction
+                      rtMTLF:respons.prediction,
                   })
-              }).catch(this.logError)
+                  this.setState({isLoading:false})
+              }).catch(err => {
+                 this.setState({isLoading:false})
+              })
 
             this.postData(forecastData)
               .then(this.validateResponse)
@@ -120,9 +125,42 @@ class Home extends React.Component {
               .then(this.showHourlyPrediction)
               .catch(this.logError);
           })
-          .catch(this.logError);
+          .catch(err => {
+             this.setState({isLoading:false}) 
+            });
       }
+  
     render() {
+      let nodata ;
+      if(this.state.isLoading) {
+        return (
+          <div className="container"> 
+            <div className="row my-5">
+              <div className="col-12">
+                <div className="card">
+                    <div className="row justify-content-center m-5 p-5">
+                       <div className="col-12">
+                          <div className="spinner-grow text-primary" role="status">
+                            <span className="sr-only">Loading...</span>
+                          </div>
+                       </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      }
+      if(!this.state.loading && this.state.rtSTLF === 0 && this.state.rtMTLF === 0 ) {
+        nodata =
+          <div className="container">
+            <div className="row justify-content-center p-5">
+                <p style={{fontSize:1.6 + 'em'}}> No Data Available. Try Again </p>
+            </div>
+          </div>
+        
+      }
+      //console.log('loadig data', this.state.rtMTLF, this.state.rtSTLF)
         return (
             <React.Fragment>
                 <div className="container">
@@ -146,9 +184,11 @@ class Home extends React.Component {
             
                                 </ul>
                                 <hr />
+                                    
                                     <div className="tab-content" id="pills-tabContent">
                                         <div className="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                                            <div className="card-body">
+                                          {nodata}
+                                         {this.state.rtSTLF > 0 &&  <div className="card-body">
                                                 <div className='row justify-content-center'>
                                                 <div className='col-12'>
                                                         <p className="text-center header-text">Hourly Load Forecast Today &nbsp; 
@@ -168,10 +208,11 @@ class Home extends React.Component {
                                                     </div>
                                                     
                                                 </div>
-                                            </div>
+                                            </div>}
                                         </div>
                                         <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                                            <div className="card-body">
+                                            {nodata}
+                                            {this.state.rtMTLF > 0 && <div className="card-body">
                                                     <div className='row justify-content-center'>
                                                     <div className='col-12'>
                                                             <p className="text-center header-text">Daily Load Forecast Today &nbsp; 
@@ -187,7 +228,7 @@ class Home extends React.Component {
                                                             <hr />
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div>}
                                         </div>
                                     
                                     </div>
