@@ -9,7 +9,7 @@ function Navigation(props) {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-light">
       <div className="container-fluid">
-        <a className="navbar-brand" href='/'>
+        <a className="navbar-brand" href='/home'>
           Electrical Load Demand Forecasting
         </a>
         <button
@@ -31,7 +31,7 @@ function Navigation(props) {
               </span>
             </li>
             <li className="nav-item">
-              <a href="/" className="nav-link">Home</a>
+              <a href="/home" className="nav-link">Home</a>
             </li>
             <li className="nav-item dropdown active">
               <a
