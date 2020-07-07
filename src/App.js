@@ -8,7 +8,7 @@ import MediumTermManual from './loadComponent/MediumTermManual'
 import Home from './loadComponent/Home'
 import Navigation from "./Navigation";
 import About from './loadComponent/About'
-import {connect} from "react-redux";
+//import {connect} from "react-redux";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom"; 
 
 class App extends Component {
@@ -60,4 +60,4 @@ class App extends Component {
   }
 }
 
-export default connect()(App);
+export default App;
