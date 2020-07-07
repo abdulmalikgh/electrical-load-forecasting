@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/electrical-load-forecasting/static/css/main.95994542.chunk.css",
-    "main.js": "/electrical-load-forecasting/static/js/main.ebee214e.chunk.js",
-    "main.js.map": "/electrical-load-forecasting/static/js/main.ebee214e.chunk.js.map",
+    "main.js": "/electrical-load-forecasting/static/js/main.b21920b7.chunk.js",
+    "main.js.map": "/electrical-load-forecasting/static/js/main.b21920b7.chunk.js.map",
     "runtime-main.js": "/electrical-load-forecasting/static/js/runtime-main.d35333c5.js",
     "runtime-main.js.map": "/electrical-load-forecasting/static/js/runtime-main.d35333c5.js.map",
     "static/css/2.ace36aee.chunk.css": "/electrical-load-forecasting/static/css/2.ace36aee.chunk.css",
-    "static/js/2.b77c3ffa.chunk.js": "/electrical-load-forecasting/static/js/2.b77c3ffa.chunk.js",
-    "static/js/2.b77c3ffa.chunk.js.map": "/electrical-load-forecasting/static/js/2.b77c3ffa.chunk.js.map",
+    "static/js/2.61b08ce2.chunk.js": "/electrical-load-forecasting/static/js/2.61b08ce2.chunk.js",
+    "static/js/2.61b08ce2.chunk.js.map": "/electrical-load-forecasting/static/js/2.61b08ce2.chunk.js.map",
     "index.html": "/electrical-load-forecasting/index.html",
-    "precache-manifest.20c9663f8b15e62365d3f327ed58fd62.js": "/electrical-load-forecasting/precache-manifest.20c9663f8b15e62365d3f327ed58fd62.js",
+    "precache-manifest.aadf78504234e1a569f848df79f11a70.js": "/electrical-load-forecasting/precache-manifest.aadf78504234e1a569f848df79f11a70.js",
     "service-worker.js": "/electrical-load-forecasting/service-worker.js",
     "static/css/2.ace36aee.chunk.css.map": "/electrical-load-forecasting/static/css/2.ace36aee.chunk.css.map",
     "static/css/main.95994542.chunk.css.map": "/electrical-load-forecasting/static/css/main.95994542.chunk.css.map",
-    "static/js/2.b77c3ffa.chunk.js.LICENSE.txt": "/electrical-load-forecasting/static/js/2.b77c3ffa.chunk.js.LICENSE.txt",
+    "static/js/2.61b08ce2.chunk.js.LICENSE.txt": "/electrical-load-forecasting/static/js/2.61b08ce2.chunk.js.LICENSE.txt",
     "static/media/andy.jpg": "/electrical-load-forecasting/static/media/andy.09d416da.jpg",
     "static/media/gaff.jpg": "/electrical-load-forecasting/static/media/gaff.14434962.jpg",
     "static/media/malik.jpg": "/electrical-load-forecasting/static/media/malik.d1657e26.jpg"
@@ -21,8 +21,8 @@
   "entrypoints": [
     "static/js/runtime-main.d35333c5.js",
     "static/css/2.ace36aee.chunk.css",
-    "static/js/2.b77c3ffa.chunk.js",
+    "static/js/2.61b08ce2.chunk.js",
     "static/css/main.95994542.chunk.css",
-    "static/js/main.ebee214e.chunk.js"
+    "static/js/main.b21920b7.chunk.js"
   ]
 }

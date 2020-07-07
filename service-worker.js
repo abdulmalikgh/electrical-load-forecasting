@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/electrical-load-forecasting/precache-manifest.20c9663f8b15e62365d3f327ed58fd62.js"
+  "/electrical-load-forecasting/precache-manifest.aadf78504234e1a569f848df79f11a70.js"
 );
 
 self.addEventListener('message', (event) => {

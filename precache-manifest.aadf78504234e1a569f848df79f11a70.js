@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "dbfb9ef697a0f586a1b7cc8a335c6b16",
+    "revision": "d6fc181ad9246290ebba1c672e63ef3c",
     "url": "/electrical-load-forecasting/index.html"
   },
   {
-    "revision": "93e5d09b2037d1f1ecff",
+    "revision": "3bb702bd9fe769ecc129",
     "url": "/electrical-load-forecasting/static/css/2.ace36aee.chunk.css"
   },
   {
-    "revision": "893e008f59e984096cd5",
+    "revision": "37fb0ab846f927e5476b",
     "url": "/electrical-load-forecasting/static/css/main.95994542.chunk.css"
   },
   {
-    "revision": "93e5d09b2037d1f1ecff",
-    "url": "/electrical-load-forecasting/static/js/2.b77c3ffa.chunk.js"
+    "revision": "3bb702bd9fe769ecc129",
+    "url": "/electrical-load-forecasting/static/js/2.61b08ce2.chunk.js"
   },
   {
     "revision": "092df60bde36f324fb35025417e39478",
-    "url": "/electrical-load-forecasting/static/js/2.b77c3ffa.chunk.js.LICENSE.txt"
+    "url": "/electrical-load-forecasting/static/js/2.61b08ce2.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "893e008f59e984096cd5",
-    "url": "/electrical-load-forecasting/static/js/main.ebee214e.chunk.js"
+    "revision": "37fb0ab846f927e5476b",
+    "url": "/electrical-load-forecasting/static/js/main.b21920b7.chunk.js"
   },
   {
     "revision": "76022473aaf8e16d7f70",
