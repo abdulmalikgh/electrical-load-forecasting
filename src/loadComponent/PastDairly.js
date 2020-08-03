@@ -149,6 +149,8 @@ class PastDairly extends Component{
                                                 <label htmlFor='time' className='form-label time_'>Select a month to see it forecast</label>
                                                     <input className="form-control" type='date' name="time"
                                                     placeholder='select date and time'
+                                                    min='2020-03-10'
+                                                    max='2020-08-31'
                                                     value={this.state.time} id='time' onChange={this.handleChange} required/>
                                                     
                                                 </div>

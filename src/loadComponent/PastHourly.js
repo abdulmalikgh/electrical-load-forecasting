@@ -145,6 +145,8 @@ class PastHourly extends Component{
                                         <label htmlFor='time' className='form-label time_'>Select date and time to check for the prediction of a particular day </label>
                                             <input className="form-control" 
                                             type='date' name="time"
+                                            min='2020-03-10'
+                                            max='2020-08-03'
                                             placeholder='select date and time'
                                             value={this.state.time} id='time' onChange={this.handleChange} required/>
                                             
