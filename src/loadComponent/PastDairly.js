@@ -49,6 +49,10 @@ class PastDairly extends Component{
           return response.json();
       })
       .then(function(data) {
+        if(data.days.length === 0)  {
+            alert('There is no Data Available for this month, make sure the month is not less than april and the month is not greater than the current month')
+        }
+
           let dataPoints = []
           for(let i = 0; i < data.days.length; i++) {
            dataPoints.push({x:data.days[i], y:data.predictions[i]})
@@ -142,7 +146,7 @@ class PastDairly extends Component{
                                             
                                                 <form onSubmit={this.handleForm}>
                                                 <div className="form-group">
-                                                <label htmlFor='time' className='form-label'>Select date and time </label>
+                                                <label htmlFor='time' className='form-label time_'>Select a month to see it forecast</label>
                                                     <input className="form-control" type='date' name="time"
                                                     placeholder='select date and time'
                                                     value={this.state.time} id='time' onChange={this.handleChange} required/>

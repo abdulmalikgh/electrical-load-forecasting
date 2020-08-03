@@ -15,8 +15,9 @@ class PastHourly extends Component{
      this.setState({
          [event.target.name] : event.target.value
      })
+     
     }
-   
+
     handleForm =(e)=>{
         e.preventDefault();
         const $this = this
@@ -26,32 +27,36 @@ class PastHourly extends Component{
       const day = parseInt(dayHour[0]);
       const month = parseInt(dateTime[1]);
       let year = parseInt(dateTime[0])
-
+       
       const currentDate = new Date()
       const currentYear = currentDate.getFullYear()
       const currentMonth = parseInt(currentDate.getMonth() + 1 )
       const currentDay = currentDate.getDate()
-      const date = new Date(this.state.time)
-      const monthname = date.toLocaleString('default', { month: 'long' })
-      const yearname = date.toLocaleString('defualt', { year:'numeric'})
-      const dayname = date.toLocaleString('defualt', { weekday:'long'})
-
-      $this.setState({title: `Hourly Load Forecast for Sunyani on ${dayname} ${monthname} ${yearname}`})
+      const date = new Date(year,month - 1,day)
       
-      if(year > currentYear && month > currentMonth &&  day > currentDay) {
-          alert('Incorrect Date, You can predict more than the current data')
-          return;
-      }
+      const monthname = date.toLocaleDateString('default',{ month: 'long' })
+      const yearname = date.toLocaleDateString('defualt', { year:'numeric'})
+      const dayname = date.toLocaleDateString('defualt', { weekday:'long'})
+      
+     
+      
       $this.state.loadding = true
       fetch(`https://load-demand-forecast.herokuapp.com/api/hourly/predictions/${year}/${month}/${day}`)
       .then(function(response) {
           return response.json();
       })
       .then(function(data) {
+        
+          if(data.hours.length === 0)  {
+              alert('There is no Data Available for this date, make sure the date is not less than april and the hour is not greater than the current hour')
+              
+          } else {
+          $this.setState({title: `Hourly Load Forecast for Sunyani on ${dayname} ${monthname} ${yearname}`})
           let dataPoints = []
           for(let i = 0; i < data.hours.length; i++) {
-           dataPoints.push({x:data.hours[i], y:data.predictions[i]})
+            dataPoints.push({x:data.hours[i], y:data.predictions[i]})
           $this.setState({data:dataPoints})
+          }
     }
      $this.setState({loading: false})
       //chart.render();//
@@ -69,8 +74,8 @@ class PastHourly extends Component{
           const monthname = currentDate.toLocaleString('default', { month: 'long' })
           const yearname = currentDate.toLocaleString('defualt', { year:'numeric'})
           const dayname = currentDate.toLocaleString('defualt', { weekday:'long'})
-
-          $this.setState({title: `Hourly Load Forecast for Sunyani on ${dayname} ${monthname} ${yearname}`})
+            console.log('currentDate', currentDate)
+         $this.setState({title: `Hourly Load Forecast for Sunyani on ${dayname} ${monthname} ${yearname}`})
           
              fetch(`https://load-demand-forecast.herokuapp.com/api/hourly/predictions/${year}/${month}/${day}`)
             .then(function(response) {
@@ -137,8 +142,10 @@ class PastHourly extends Component{
                                     
                                         <form onSubmit={this.handleForm}>
                                         <div className="form-group">
-                                        <label htmlFor='time' className='form-label'>Select date and time </label>
-                                            <input className="form-control" type='date' name="time" placeholder='select date and time'
+                                        <label htmlFor='time' className='form-label time_'>Select date and time to check for the prediction of a particular day </label>
+                                            <input className="form-control" 
+                                            type='date' name="time"
+                                            placeholder='select date and time'
                                             value={this.state.time} id='time' onChange={this.handleChange} required/>
                                             
                                         </div>

@@ -27,9 +27,12 @@ class ShortTermManual extends Component{
      return response.json()
     }
     showPrediction = (jsonResponse)=>{
-    this.setState({loading:false})
+     this.setState({loading:false})
+    //  if(jsonResponse.prediction.length === 0) {
+    //      alert('No data avalailable')
+    //  }
+    console.log('data', jsonResponse)
      this.setState({prediction:jsonResponse.prediction})
-     //console.log('prediction: ', this.state.prediction)
     }
     postData(forecastData) {
         return fetch(
@@ -79,6 +82,7 @@ class ShortTermManual extends Component{
    render() {
     let spinner;
     let valuePredicted;
+
     if(this.state.loading) {
         spinner = 
         <div className="spinner-grow text-danger" role="status">
@@ -101,7 +105,7 @@ class ShortTermManual extends Component{
                    <div className="col-12 ">
                        <div className='card'>
                            { valuePredicted }
-                            <h2 tabIndex='-1' className='text-center pt-2 pb-5'>Short Term Load Forecasting</h2>
+                            <h2 tabIndex='-1' className='text-center pt-2 pb-5'>Hourly Load Forecasting</h2>
 
                                 <div className="row justify-content-center ">
                                     <div className="col-lg-8 col-md-10 col-sm-11 mb-5">

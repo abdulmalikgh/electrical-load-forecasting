@@ -49,9 +49,10 @@ class App extends Component {
               <Route exact path="/manual-daily-forecast" component={MediumTermManual} />
               {/* <Route exact path="/about-us" component={About} /> */}
               <Route exact path="/">
-              <Redirect to="/home" />
-              </Route>
-            </Switch>
+              <Redirect to="/home" component={Home}
+                />
+                </Route>
+              </Switch>
           </main>
           <footer className="App-footer">
             <Footer />

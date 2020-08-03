@@ -211,3 +211,8 @@
    font-weight: bolder;
    font-size: 1.3em;
  }
+ .time_{
+   font-size:1.5em;
+   padding:.5em 0;
+   color:brown;
+ }
