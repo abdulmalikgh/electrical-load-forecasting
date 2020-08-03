@@ -9,7 +9,7 @@ import Home from './loadComponent/Home'
 import Navigation from "./Navigation";
 import About from './loadComponent/About'
 //import {connect} from "react-redux";
-import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom"; 
+import {BrowserRouter as Router, Switch, Route, Redirect  } from "react-router-dom"; 
 
 class App extends Component {
   constructor(props) {
@@ -25,7 +25,6 @@ class App extends Component {
     this.intervalId = setInterval(() => this.tick(), 100);
   }
   
-
   componentWillUnmount() {
     clearInterval(this.intervalId);
   }
@@ -45,13 +44,13 @@ class App extends Component {
             <Switch>
               <Route exact path="/home" component={Home} />
               <Route exact path="/manual-hourly-forecast" component={ShortTermManual} />
-              <Route exact path="/past_dairly_forecast" component={PastDairly} />
+              <Route exact path="/past_daily_forecast" component={PastDairly} />
               <Route exact path="/past_hourly_forecast" component={PastHourly} />
-              <Route exact path="/manual-dairly-forecast" component={MediumTermManual} />
-              <Route exact path="/about-us" component={About} />
+              <Route exact path="/manual-daily-forecast" component={MediumTermManual} />
+              {/* <Route exact path="/about-us" component={About} /> */}
               <Route exact path="/">
-                 <Redirect to="/home" />
-                </Route>
+              <Redirect to="/home" />
+              </Route>
             </Switch>
           </main>
           <footer className="App-footer">

@@ -155,7 +155,7 @@ class Home extends React.Component {
         nodata =
           <div className="container">
             <div className="row justify-content-center p-5">
-                <p style={{fontSize:1.6 + 'em'}}> No Data Available. Try Again </p>
+                <p style={{fontSize:1.6 + 'em'}}> Network Error. No Data Available. Try Again </p>
             </div>
           </div>
         
