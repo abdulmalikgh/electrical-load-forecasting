@@ -57,15 +57,17 @@ class PastDairly extends Component{
      $this.setState({loading: false})
       //chart.render();//
   
-      });
+      }).catch(err => {
+        this.setState({loading:false}) 
+       });
       
       
     }
     componentDidMount(){
         let $this = this
         //var chart = this.chart;
-        $this.state.loadding = true
-         const currentDate = new Date();
+          $this.state.loading = true
+          const currentDate = new Date();
           const day = currentDate.getDate()
           const month = parseInt(currentDate.getMonth() + 1)
           const year = currentDate.getFullYear()
@@ -88,11 +90,14 @@ class PastDairly extends Component{
            $this.setState({loading: false})
             //chart.render();//
         
-            });
+            }).catch(err => {
+                this.setState({loading:false}) 
+               });
     
     }
     
    render() {
+    var nodata; 
     if(this.state.loading) {
         return (
           <div className="container"> 
@@ -112,36 +117,51 @@ class PastDairly extends Component{
           </div>
         )
       }
+      if(!this.state.loading && this.state.data.length == 0 ) {
+        nodata =
+          <div className="container">
+            <div className="card m-5 p-5">
+                <div className="row justify-content-center p-5 mt-5">
+                    <p style={{fontSize:1.6 + 'em'}}> Network Error. No Data Available. Try Again </p>
+                </div>
+            </div>
+          </div>
+        
+      }
     //console.log('points',this.state.data)
        return (
            <div className='container-fluid'>
-           <div className='container'>
-               <div className='row mt-1'>
-                   <div className="col-12 ">
-                       <div className='card'>
-                                <div className="row justify-content-center ">
-                                    <div className="col-lg-8 col-md-10 col-sm-11 mb-5">
-                                    
-                                        <form onSubmit={this.handleForm}>
-                                        <div className="form-group">
-                                        <label htmlFor='time' className='form-label'>Select date and time </label>
-                                            <input className="form-control" type='date' name="time"
-                                             placeholder='select date and time'
-                                            value={this.state.time} id='time' onChange={this.handleChange} required/>
+            {nodata}
+            {this.state.data.length > 0 && 
+                <div className='container'>
+                    <div className='row mt-1'>
+                        <div className="col-12 ">
+                            <div className='card'>
+                                        <div className="row justify-content-center ">
+                                            <div className="col-lg-8 col-md-10 col-sm-11 mb-5">
                                             
-                                        </div>
+                                                <form onSubmit={this.handleForm}>
+                                                <div className="form-group">
+                                                <label htmlFor='time' className='form-label'>Select date and time </label>
+                                                    <input className="form-control" type='date' name="time"
+                                                    placeholder='select date and time'
+                                                    value={this.state.time} id='time' onChange={this.handleChange} required/>
+                                                    
+                                                </div>
+                                                
+                                                    <button className='btn btn-primary'>
+                                                        Submit 
+                                                    </button>
+                                            </form>
                                         
-                                            <button className='btn btn-primary'>
-                                                Submit 
-                                            </button>
-                                    </form>
-                                   
-                                </div>
-                                </div>
+                                        </div>
+                                        </div>
+                                    </div>
                             </div>
                     </div>
-               </div>
-           </div>
+                </div>
+             }
+        {this.state.data.length > 0 &&
           <div className="container">
             <div className="row mt-5 mb-2">
                 <div className="col-sm-12 col-md-12 col-lg-12">
@@ -151,6 +171,7 @@ class PastDairly extends Component{
                 </div>
                 </div>
             </div>
+            }
         </div>
        )
    }

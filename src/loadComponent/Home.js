@@ -131,7 +131,7 @@ class Home extends React.Component {
       }
   
     render() {
-      let nodata ;
+      let nodata;
       if(this.state.isLoading) {
         return (
           <div className="container"> 

@@ -61,10 +61,8 @@ class PastHourly extends Component{
       
     }
     componentDidMount(){
-        let $this = this
-        //var chart = this.chart;
-        $this.state.loadding = true
-         const currentDate = new Date();
+          let $this = this
+          const currentDate = new Date();
           const day = currentDate.getDate()
           const month = parseInt(currentDate.getMonth() + 1)
           const year = currentDate.getFullYear();
@@ -87,11 +85,15 @@ class PastHourly extends Component{
            $this.setState({loading: false})
             //chart.render();//
         
-            });
+            }).catch(err => {
+                this.setState({loading:false}) 
+               });
     
     }
     
    render() {
+    let nodata;
+
     if(this.state.loading) {
         return (
           <div className="container"> 
@@ -111,10 +113,22 @@ class PastHourly extends Component{
           </div>
         )
       }
+      if(!this.state.loading && this.state.data.length == 0 ) {
+        nodata =
+          <div className="container">
+            <div className="card m-5 p-5">
+                <div className="row justify-content-center p-5 mt-5">
+                    <p style={{fontSize:1.6 + 'em'}}> Network Error. No Data Available. Try Again </p>
+                </div>
+            </div>
+          </div>
+        
+      }
     //console.log('points',this.state.data)
        return (
            <div className='container-fluid'>
-           <div className='container'>
+             {nodata}
+             {this.state.data.length > 0 && <div className='container'>
                <div className='row mt-1'>
                    <div className="col-12 ">
                        <div className='card'>
@@ -139,8 +153,8 @@ class PastHourly extends Component{
                             </div>
                     </div>
                </div>
-           </div>
-          <div className="container">
+         </div> }
+          {this.state.data.length > 0 && <div className="container">
             <div className="row mt-5 mb-5">
                 <div className="col-sm-12 col-md-12 col-lg-12">
                     <div className="card">
@@ -148,7 +162,7 @@ class PastHourly extends Component{
                     </div>
                 </div>
                 </div>
-            </div>
+       </div> }
         </div>
        )
    }

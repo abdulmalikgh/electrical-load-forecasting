@@ -49,7 +49,7 @@ function Navigation(props) {
                   Hourly
                 </Link>
                 <div className="dropdown-divider"></div>
-                <Link className="dropdown-item" to="/manual-dairly-forecast">
+                <Link className="dropdown-item" to="/manual-daily-forecast">
                   Daily
                 </Link>
               </div>
@@ -71,7 +71,7 @@ function Navigation(props) {
                    Past Hourly Forecast
                 </Link>
                 <div className="dropdown-divider"></div>
-                <Link className="dropdown-item" to="/past_dairly_forecast">
+                <Link className="dropdown-item" to="/past_daily_forecast">
                    Past Daily Forecast
                 </Link>
               </div>
