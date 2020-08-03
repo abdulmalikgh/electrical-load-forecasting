@@ -1,7 +1,7 @@
 [build]
   command = "npm run build"
-  publish="C:\Users\musah.DESKTOP-1V2Q8LB\Documents\REACT\electrical-load-forecasting/build"
-  base = "C:\Users\musah.DESKTOP-1V2Q8LB\Documents\REACT\electrical-load-forecasting"
+  publish="/build"
+  base = "/build"
 
 [[redirects]]
   from = "/*"
